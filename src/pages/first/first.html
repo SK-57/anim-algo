@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sorting</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label color="primary">Numbers</ion-label>
+      <ion-input type="text" [(ngModel)]="numberString" placeholder="Enter your numbers" (keyup)="onKey($event)"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <button ion-button (click)="onSubmit()" [disabled]="!isButtonEnable">Next</button>
+  <br>
+  <button ion-button round ng-if="isBubbleSortReady" *ngFor="let (item,i) of bubbleSortSteps"><button ng-if="i < bubbleSortIndex">{{item}}</button></button>
+
+  <!--"let item of resultArray" it's a declaration. where 'item' & 'resultArray' position defines-->
+
+</ion-content>
