@@ -15,8 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FirstPage {
 
-  isBubbleSortReady = false;
-  bubbleSortIndex = 0;
+  isSortReady = false;
+  itemCount = 0;
   goNextBtnHideMe = true;
   numberString: any;
   resultArray = [];
@@ -43,7 +43,7 @@ export class FirstPage {
         this.sortSteps.push(arr.slice());
         // console.log('sortSteps: ', this.sortSteps);
       }
-      this.isBubbleSortReady = true;
+      this.isSortReady = true;
     }
 
   }
@@ -104,8 +104,11 @@ export class FirstPage {
       temp = array[i];
       array[i] = array[mi];
       array[mi] = temp;
+      this.sortSteps.push(array.slice());
     }
-    this.resultArray = array;
+    this.isSortReady = true;
+
+    // this.resultArray = array;
     //Selection sort ends here
 
     //Quick starts
@@ -178,6 +181,7 @@ export class FirstPage {
     } else if (this.sortType === 'selectionsort') {
       inputArray = numberArray;
       this.selectionSort(inputArray);
+      this.goNextBtnHideMe = false;
     }
     // else if (this.sortType === 'quicksort') {
     //   inputArray = numberArray;
@@ -186,7 +190,7 @@ export class FirstPage {
   }
 
   handleBubbleSortSteps() {
-    console.log('this.bubbleSortIndex: ', this.bubbleSortIndex)
-    this.bubbleSortIndex += 1;
+    console.log('this.itemCount: ', this.itemCount)
+    this.itemCount += 1;
   }
 }

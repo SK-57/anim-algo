@@ -22,7 +22,7 @@
   <br>
 
 
-  <button *ngIf="!goNextBtnHideMe" ion-button (click)="handleBubbleSortSteps()" [disabled]="!isBubbleSortReady">
+  <button *ngIf="!goNextBtnHideMe" ion-button (click)="handleBubbleSortSteps()" [disabled]="!isSortReady">
     Go Next
   </button>
 
@@ -33,10 +33,10 @@
   </button>
 
   <!-- print bubble sort -->
-  <div *ngIf="isBubbleSortReady">
+  <div *ngIf="isSortReady">
     <div *ngFor="let item of sortSteps; let i = index">
 
-      <button ion-button round *ngIf="i < bubbleSortIndex">
+      <button ion-button round *ngIf="i < itemCount">
         {{ item }}
       </button>
 
