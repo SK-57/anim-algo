@@ -17,9 +17,10 @@ export class FirstPage {
 
   isBubbleSortReady = false;
   bubbleSortIndex = 0;
+  goNextBtnHideMe = true;
   numberString: any;
   resultArray = [];
-  bubbleSortSteps = [];
+  sortSteps = [];
   sortType: String = '';
   isButtonEnable = false;
 
@@ -30,56 +31,23 @@ export class FirstPage {
 
   //Bubble sort starts here
 
-  sortArray(arr) {
-    // console.log('113332 ', arr);
-
-
-    // setTimeout((indx) => {
-    //   if (arr[indx] > arr[indx + 1]) {
-    //     let temp = arr[indx + 1];
-    //     arr[indx + 1] = arr[indx];
-    //     arr[indx] = temp;
-    //     console.log('3333 ', arr);
-    //     this.resultArray = arr;
-    //   }
-    // }, 3000, i);
-
-    // }
-  }
-
   bubbleSort(arr) {
-    const arr2 = arr.slice()
-    for (let i = 0; i < arr2.length - 1; i++) {
-      for (let j = 0; j < arr2.length - 1; j++) {
-        if (arr2[j] > arr2[j + 1]) {
-          let temp = arr2[j + 1];
-          arr2[j + 1] = arr2[j];
-          arr2[j] = temp;
-          // console.log('3333 ', arr2);
-          // this.resultarr2ay = arr2;
-
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = 0; j < arr.length - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+          let temp = arr[j + 1];
+          arr[j + 1] = arr[j];
+          arr[j] = temp;
 
         }
-        const arr3 = arr2.slice()
-        this.bubbleSortSteps.push(arr3);
-        console.log('bubbleSortSteps: ', this.bubbleSortSteps);
+        this.sortSteps.push(arr.slice());
+        // console.log('sortSteps: ', this.sortSteps);
       }
       this.isBubbleSortReady = true;
     }
 
-    // for (let i = 0; i < myArr.length; i++) {
-
-    //   setTimeout((input) => {
-    //     console.log(1111, input);
-    //     this.sortArray(myArr);
-    //   }, 5000, i);
-
-    // }
   }
-
   //Bubble sort ends here........
-
-
 
   //Merge sort starts here:
   // Split the array into halves and merge them recursively 
@@ -189,7 +157,6 @@ export class FirstPage {
   // 2 3 5 8 6  -> ['2','3','5','8','6']
 
 
-
   //Codes are done here works and relate to respective pages
   onSubmit() {
     console.log('numberString ', this.numberString);
@@ -203,7 +170,8 @@ export class FirstPage {
     console.log('TCL: FirstPage -> onSubmit -> this.sortType', this.sortType);
     if (this.sortType === 'bubblesort') {
       inputArray = numberArray;
-      this.bubbleSort(inputArray)
+      this.bubbleSort(inputArray);
+      this.goNextBtnHideMe = false;
     } else if (this.sortType === 'mergesort') {
       inputArray = numberArray;
       this.mergeSort(inputArray);
@@ -215,5 +183,10 @@ export class FirstPage {
     //   inputArray = numberArray;
     //   this.quick_Sort(inputArray);
     // }
+  }
+
+  handleBubbleSortSteps() {
+    console.log('this.bubbleSortIndex: ', this.bubbleSortIndex)
+    this.bubbleSortIndex += 1;
   }
 }

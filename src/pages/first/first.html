@@ -17,9 +17,31 @@
     </ion-item>
 
   </ion-list>
+
   <button ion-button (click)="onSubmit()" [disabled]="!isButtonEnable">Next</button>
   <br>
-  <button ion-button round ng-if="isBubbleSortReady" *ngFor="let item of bubbleSortSteps">{{ item }}</button>
+
+
+  <button *ngIf="!goNextBtnHideMe" ion-button (click)="handleBubbleSortSteps()" [disabled]="!isBubbleSortReady">
+    Go Next
+  </button>
+
+  <!-- print all except bubbleSort -->
+
+  <button ion-button round *ngFor="let item of resultArray">
+    {{ item }}
+  </button>
+
+  <!-- print bubble sort -->
+  <div *ngIf="isBubbleSortReady">
+    <div *ngFor="let item of sortSteps; let i = index">
+
+      <button ion-button round *ngIf="i < bubbleSortIndex">
+        {{ item }}
+      </button>
+
+    </div>
+  </div>
 
   <!--"let item of resultArray" it's a declaration. where 'item' & 'resltArray' position defines-->
 
